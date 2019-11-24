@@ -1,5 +1,6 @@
 # Analiza podatkov s programom R, 2019/20
 #test 
+#test2
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2019/20
 
 * [![Shiny](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/jaanos/APPR-2019-20/master?urlpath=shiny/APPR-2019-20/projekt.Rmd) Shiny
