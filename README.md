@@ -1,6 +1,5 @@
 # Analiza podatkov s programom R, 2019/20
-#test 
-#test2
+
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2019/20
 
 * [![Shiny](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/jaanos/APPR-2019-20/master?urlpath=shiny/APPR-2019-20/projekt.Rmd) Shiny
@@ -8,8 +7,15 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2019/20
 
 ## Tematika
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal.
-Tukaj boste napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+V tej projektni nalogi bom analiziral določene dejavnike, ki vplivajo na okolje v Sloveniji. Analiziral bom količine izpuščenih toplogrednih plinov v ozračje za različne gospodarske dejavnosti, nastale komunalne odpadke (nevarne, recilirane),investicije za varstvo okolja in gospodarsko rast države. Vse podatke bodo analizirani med letoma 2010 in 2017, vir pa bo stran statističnega urada Republike Slovenije (SURS).
+
+Cilj te analize bo poiskati povezave med izpusti toplogrednih plinov in stopnjo recikliranja z insvesticijami za varstvo okolja. Ugotoviti bom želel kako rast BDP vpliva na investicije in izpuste v okolje, ter količino odpadkov
+
+#Tabele
+* 1. tabela: izpust toplogrednih plinov (CO2, N2O, CH4, SF6), za posemezne gospodarske panoge (CSV.)
+*2. tabela: nastali komunalni odpadki, nastali nevarni komunalni odpadki, stopnja recikliranja komunalnih odpadov (HTML. ali JSON.)
+*3. tabela: investicije za varstvo okolja (v % BDP-ja),tekoči izdatki za varstvo okolja (v % BDP-ja), investicije za varstvo okolja v industriji (v % BDP-ja)
+*4. tabela: BDP (količina, rast), struktrura BDP-ja po posameznih gospodarskih panogah
 
 ## Program
 
