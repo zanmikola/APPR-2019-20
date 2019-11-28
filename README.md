@@ -6,15 +6,15 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2019/20
 * [![RStudio](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/jaanos/APPR-2019-20/master?urlpath=rstudio) RStudio
 
 ## Tematika
-V tej projektni nalogi bom analiziral določene dejavnike, ki vplivajo na okolje v Sloveniji. Analiziral bom količine izpuščenih toplogrednih plinov v ozračje za različne gospodarske dejavnosti, nastale komunalne odpadke (nevarne, recilirane),investicije za varstvo okolja in gospodarsko rast države. Vsi podatki bodo analizirani med letoma 2010 in 2017, vir pa bo stran statističnega urada Republike Slovenije (SURS).
+V tej projektni nalogi bom analiziral določene dejavnike, ki vplivajo na okolje v Sloveniji. Analiziral bom količine izpuščenih toplogrednih plinov v ozračje za različne gospodarske dejavnosti, nastale komunalne odpadke (nevarne, reciklirane), investicije za varstvo okolja in gospodarsko rast države. Vsi podatki bodo analizirani med letoma 2010 in 2017, vir pa bo stran statističnega urada Republike Slovenije (SURS).
 
-Cilj te analize bo poiskati povezave med izpusti toplogrednih plinov in stopnjo recikliranja z insvesticijami za varstvo okolja. Ugotoviti želim kako rast BDP-ja vpliva na investicije in izpuste v okolje, ter količino odpadkov
+Cilj analize je poiskati povezave med izpusti toplogrednih plinov, stopnjo recikliranja, z investicijami za varstvo okolja in rastjo BDP-ja.
 
 # Tabele
 1. tabela: izpust toplogrednih plinov (CO2, N2O, CH4, SF6), za posemezne gospodarske panoge (CSV.)
 2. tabela: nastali komunalni odpadki, nastali nevarni komunalni odpadki, reciklirani komunalni odpadki (HTML. ali JSON.)
 3. tabela: investicije za varstvo okolja (v % BDP-ja),tekoči izdatki za varstvo okolja (v % BDP-ja), investicije za varstvo okolja v industriji (v % BDP-ja)
-4. tabela: BDP (količina, rast), struktrura BDP-ja po posameznih gospodarskih panogah
+4. tabela: BDP (količina, rast), struktrura BDP-ja za posamezne gospodarske panoge
 
 ## Program
 
