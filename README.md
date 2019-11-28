@@ -7,6 +7,10 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2019/20
 
 ## Tematika
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 57f2ae8969f7c3d80a806f7cc4c2ac99402091d7
 V tej projektni nalogi bom analiziral določene dejavnike, ki vplivajo na okolje v Sloveniji. Analiziral bom količine izpuščenih toplogrednih plinov v ozračje za različne gospodarske dejavnosti, nastale komunalne odpadke (nevarne, recilirane),investicije za varstvo okolja in gospodarsko rast države. Vsi podatki bodo analizirani med letoma 2010 in 2017, vir pa bo stran statističnega urada Republike Slovenije (SURS).
 
 Cilj te analize bo poiskati povezave med izpusti toplogrednih plinov in stopnjo recikliranja z insvesticijami za varstvo okolja. Ugotoviti želim kako rast BDP-ja vpliva na investicije in izpuste v okolje, ter količino odpadkov
