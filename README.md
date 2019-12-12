@@ -2,8 +2,8 @@
 
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2019/20
 
-* [![Shiny](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/jaanos/APPR-2019-20/master?urlpath=shiny/APPR-2019-20/projekt.Rmd) Shiny
-* [![RStudio](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/jaanos/APPR-2019-20/master?urlpath=rstudio) RStudio
+* [![Shiny](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/zanmikola/APPR-2019-20/master?urlpath=shiny/APPR-2019-20/projekt.Rmd) Shiny
+* [![RStudio](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/zanmikola/APPR-2019-20/master?urlpath=rstudio) RStudio
 
 ## Tematika
 V tej projektni nalogi bom analiziral določene dejavnike, ki vplivajo na okolje v Sloveniji. Analiziral bom količine izpuščenih toplogrednih plinov v ozračje za različne gospodarske dejavnosti, nastale komunalne odpadke (nevarne, reciklirane), investicije za varstvo okolja in gospodarsko rast države. Vsi podatki bodo analizirani med letoma 2010 in 2017, vir pa bo stran statističnega urada Republike Slovenije (SURS).
