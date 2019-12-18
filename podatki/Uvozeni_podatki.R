@@ -1,10 +1,12 @@
 library(readr)
 library(tidyr)
 library(dplyr)
+library("rjson")
 toplogredni_p <- read_csv("podatki/toplogredni.csv",locale=locale(encoding="Windows-1250"), na=c("...","-"))
 View(toplogredni_p)
 izpust_co2 <- toplogredni_p %>% select(1,seq(2, 33, 4))
 izpust_n2o <- toplogredni_p %>% select(1,seq(3, 33, 4))
 izpust_ch4 <- toplogredni_p %>% select(1,seq(4, 33, 4))
 izpust_sf6 <- toplogredni_p %>% select(1,seq(5, 33, 4))
-
+setwd('podatki/')
+okoljski_davki <- read_csv(0)
