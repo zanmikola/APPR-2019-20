@@ -54,5 +54,7 @@ dejavnosti3 <- as.vector(BDP$`DEJAVNOSTI/TRANSAKCIJE`)
 
 BDP_po_dejavnosti <- BDP %>% slice(grep("^[A-Z] ", dejavnosti3))
 
-invest_regije_tisoceur <- read_csv("podatki/invest_regije.csv", locale=locale(encoding="Windows-1250"), na=c("...","-"))
+invest_regije <- read_csv("podatki/invest_regije.csv", locale=locale(encoding="Windows-1250"), na=c("...","-"))
+
+invest_regije[,-1] <- invest_regije[,-1] / 1000
 
