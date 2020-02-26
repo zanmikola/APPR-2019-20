@@ -1,0 +1,106 @@
+"SKD DEJAVNOST","2010 Namen - SKUPAJ","2011 Namen - SKUPAJ","2012 Namen - SKUPAJ","2013 Namen - SKUPAJ","2014 Namen - SKUPAJ","2015 Namen - SKUPAJ","2016 Namen - SKUPAJ","2017 Namen - SKUPAJ"
+"SKD Dejavnost - SKUPAJ",408319,281248,394126,378505,405669,442498,212173,232956
+"A KMETIJSTVO IN LOV,GOZDARSTVO,RIBIŠTVO",261,239,300,876,435,594,229,1
+"A01 Kmet.proizv.,lov ter z njima pov.stor.",z,14,z,-,-,z,z,z
+"A02 Gozdarstvo",z,225,z,z,z,z,z,z
+"A03 Ribištvo in gojenje vodnih organizmov",-,-,-,z,-,z,-,-
+"B RUDARSTVO",3256,3572,1625,1790,865,915,1741,9392
+"B05 Pridobivanje premoga",z,2180,z,z,z,z,z,z
+"B06 Pridobivanje surove nafte in zemeljskega plina",-,-,-,-,-,-,-,-
+"B07 Pridobivanje rud",-,-,-,-,-,-,-,-
+"B08 Pridobivanje rudnin in kamnin",260,z,z,z,z,z,z,z
+"B09 Stor.za rudarstvo",z,z,-,-,-,-,-,-
+"C PREDELOVALNE DEJAVNOSTI",42059,39129,38491,29004,39033,63476,52271,57209
+"C10 Prz.živil",2247,2503,1879,699,1006,3150,2247,1368
+"C11 Prz.pijaè",1007,352,120,380,393,300,455,z
+"C12 Prz.tobaènih izdelkov",-,-,-,-,-,-,-,-
+"C13 Prz.tekstilij",323,307,68,62,308,159,467,181
+"C14 Prz.oblaèil",z,z,z,z,z,z,z,-
+"C15 Prz.usnja,usnjenih in sorodnih izd.",z,1962,978,z,266,z,765,841
+"C16 Obd.,predel.lesa,izd.iz lesa ipd.rz.poh.",417,298,233,135,227,z,z,274
+"C17 Prz.papirja in izd.iz papirja",607,807,493,2406,2445,501,4891,2012
+"C18 Tisk.in razm.posnetih nosilcev zapisa",z,218,643,57,z,49,z,160
+"C19 Prz.koksa in naftnih derivatov",z,-,-,-,-,-,-,-
+"C20 Prz.kemikalij,kemienih izd.",3456,6708,9630,7558,5717,6615,7804,18188
+"C21 Prz.farmac.surovin in preparatov",z,3408,z,z,z,z,z,z
+"C22 Prz.izd.iz gume in plastiènih mas",1592,2824,2133,1811,2282,2530,1703,2844
+"C23 Prz.nekovinskih mineralnih izd.",5464,5856,3929,1501,3116,25500,10764,3692
+"C24 Prz.kovin",2740,3171,3291,3409,4434,10325,5773,6896
+"C25 Prz.kovinskih izd.,rz.strojev in naprav",916,3279,1225,915,1487,1661,2152,2366
+"C26 Prz.raè.,elektronskih,optiènih izd.",68,119,200,100,504,370,846,381
+"C27 Prz.elektriènih naprav",3893,3523,3269,2491,6895,2917,2155,6010
+"C28 Prz.dr.strojev in naprav",1898,1257,408,209,751,444,821,648
+"C29 Prz.mot.voz.,prikolic in polprikolic",1037,1166,4529,1194,3011,1746,1316,4126
+"C30 Prz.dr.vozil in plovil",z,z,z,z,z,z,z,z
+"C31 Prz.pohištva",346,534,284,56,301,36,2399,119
+"C32 Dr.raznovrstne predelovalne dej.",645,729,33,66,z,64,277,116
+"C33 Popravila in montaža strojev in naprav",z,72,278,z,z,z,805,424
+"D OSKRBA Z EL.ENERGIJO,PLINOM IN PARO",45405,106355,167614,128762,100578,38813,34911,44468
+"D35 Oskrba z el.energijo,plinom in paro",45405,106355,167614,128762,100578,38813,34911,44468
+"E OSKR.Z VODO,RAV.Z ODPL.,ODP.,SAN.OKOLJA",35716,27671,24005,23786,36979,91515,40033,69368
+"E36 Zbiranje,preèišè.in distribucija vode",13461,13687,11369,6837,6177,5675,5580,6711
+"E37 Ravnanje z odplakami",123,z,z,z,5,-,z,35
+"E38 Zbir.,odvoz,rav.z odp.,pridob.sek.sur.",22132,13819,12353,z,30797,85693,34216,61936
+"E39 Saniranje okolja idr.ravnanje z odpadki",-,z,z,-,-,147,z,685
+"F GRADBENIŠTVO",2051,601,8651,137,78,807,415,417
+"F41 Gradnja stavb",618,23,z,z,-,-,273,-
+"F42 Gradnja inženirskih objektov",1369,377,8534,z,45,z,z,z
+"F43 Specializirana gradbena dela",64,202,z,-,32,z,z,289
+"G TRGOVINA,VZDRŽ.IN POPRAVILA MOT.VOZIL",5934,5552,5295,7581,2635,10676,3399,3227
+"G45 Trg.z mot.voz.in popravila mot.voz.",122,93,z,203,721,372,z,305
+"G46 Posredništvo in trg.db.,rz.z mot.voz.",0,749,z,823,-,100,z,z
+"G47 Trg.dr.,razen z motornimi vozili",5811,4709,4409,6555,1914,10204,3064,2771
+"H PROMET IN SKLADIŠEENJE",24692,19939,4702,10592,19430,6866,12902,8331
+"H49 Kopenski promet,cevovodni transport",7270,14728,3746,7547,1132,1856,7701,4350
+"H50 Vodni promet",-,-,-,-,z,-,-,-
+"H51 Zraèni promet",-,-,-,z,-,-,-,z
+"H52 Skladišèenje in spremljaj.prometne dej.",z,5120,z,2943,z,z,5194,z
+"H53 Poštna in kurirska dej.",z,91,z,z,z,z,7,-
+"I GOSTINSTVO",575,1515,394,552,2947,293,5201,542
+"I55 Gostinske nastanitvene dej.",575,z,z,z,2947,275,z,z
+"I56 Dej.strežbe jedi in pijaè",-,z,z,z,z,18,z,z
+"J INFORMACIJSKE IN KOMUNIKACIJSKE DEJ.",3237,2661,14884,1237,3316,1420,2206,1564
+"J58 Založništvo",z,-,z,-,-,-,z,z
+"J59 Dej.v zvezi s filmi,video in zvoèn.zap.",z,-,z,z,z,z,-,-
+"J60 Radijska in televizijska dej.",241,2408,z,522,2184,z,500,508
+"J61 Telekomunikacijske dej.",-,253,678,z,z,z,1628,z
+"J62 Raè.programir.,svetovanje idr.pov.dej.",-,-,-,z,z,-,z,-
+"J63 Dr.informacijske dejavnosti",-,-,-,-,-,-,-,-
+"K FINANENE IN ZAVAROVALNIŠKE DEJ.",596,51,276,366,319,293,511,149
+"K64 Dej.fin.stor.,rz.zavarov.in pok.skl.",z,z,z,z,319,293,z,z
+"K65 Dej.zav.,poz.in pok.skl.,rz.obv.soc.var.",z,z,z,z,-,-,z,z
+"K66 Pom.dej.za fin.in zavarov.stor.",-,-,-,-,-,-,-,-
+"L POSLOVANJE Z NEPREMIENINAMI",637,-,-,2768,-,-,-,z
+"L68 Poslovanje z nepremieninami",637,-,-,z,-,-,-,z
+"M STROKOVNE,ZNANSTVENE IN TEHNIENE DEJ.",210,197,3249,159,528,4,40,1048
+"M69 Pravne in raeunovodske dej.",-,-,-,-,240,z,-,-
+"M70 Dej.uprav podjetij,podjet.in posl.svet.",-,-,29,z,z,z,z,1030
+"M71 Arhit.in teh.projekt.,teh.preiz.,analiz.",183,179,z,z,z,-,z,z
+"M72 Znanstvena raziskovalna in razvojna dej.",z,-,z,z,-,-,-,z
+"M73 Oglaševanje in raziskovanje trga",z,-,-,-,-,-,-,-
+"M74 Dr.strokovne in tehniene dej.",z,18,z,-,-,-,-,-
+"M75 Veterinarstvo",z,-,-,-,-,-,-,-
+"N DRUGE RAZNOVRSTNE POSLOVNE DEJ.",108,21,4231,474,13,13,1888,70
+"N77 Dajanje v najem in zakup",-,-,z,z,13,-,-,z
+"N78 Zaposlovalne dejavnosti",-,-,-,-,-,-,-,z
+"N79 Dej.potov.ag.,org.pot.in pov.dej.",z,z,-,-,-,-,-,-
+"N80 Varovanje in poizvedovalne dej.",-,z,z,-,-,-,z,z
+"N81 Dej.oskrbe stavb in okolice",-,-,-,-,-,z,z,-
+"N82 Pisarniške in spremljaj.posl.stor.dej.",z,7,-,z,13,z,-,-
+"O JAVNA UPRAVA IN OBRAMBA,OBV.SOC.VARNOST",240866,71008,117353,162703,196751,223325,54096,35022
+"O84 Dej.javne upr.in obram.,dej.obv.soc.varnosti",240866,71008,117353,162703,196751,223325,54096,35022
+"P IZOBRAŽEVANJE",1435,1207,2308,4118,920,1144,1758,1054
+"P85 Izobraževanje",1435,1207,2308,4118,920,1144,1758,1054
+"Q ZDRAVSTVO IN SOCIALNO VARSTVO",753,1070,198,3285,372,661,310,645
+"Q86 Zdravstvo",485,748,151,224,249,113,123,251
+"Q87 Socialno varstvo z nastanitvijo",267,321,47,3061,z,548,z,394
+"Q88 Socialno varstvo brez nastanitve",-,-,-,-,z,-,z,-
+"R KULTURNE,RAZVEDRILNE IN REKREAC.DEJ.",522,345,104,294,469,97,5,147
+"R90 Kulturne in razvedrilne dej.",95,z,z,z,-,z,-,-
+"R91 Dej.knjižnic,arhivov,muzej.idr.kult.dej.",-,-,z,z,z,z,-,z
+"R92 Prirejanje iger na sreeo",-,206,z,-,z,z,z,z
+"R93 Športne idr.dej.za prosti èas",426,z,-,z,z,-,z,-
+"S DRUGE DEJAVNOSTI",9,116,446,22,-,1587,258,z
+"S94 Dej.èlanskih organizacij",-,z,-,z,-,z,z,-
+"S95 Popravila raè.in izd.za široko rabo",-,-,-,-,-,-,-,-
+"S96 Dr.storitvene dej.",9,z,446,z,-,z,z,z
