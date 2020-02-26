@@ -35,3 +35,4 @@ okoljski_davki %>% rename( '2010,\n (mio EUR)'= `2010`,
 BDP <- read_csv('bdp.csv',locale=locale(encoding="Windows-1250"), na=c("z","-"))
 
 
+
