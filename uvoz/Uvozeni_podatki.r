@@ -58,3 +58,7 @@ invest_regije <- read_csv("podatki/invest_regije.csv", locale=locale(encoding="W
 
 invest_regije[,-1] <- invest_regije[,-1] / 1000
 
+okoljski_davki <-mutate_each(okoljski_davki, funs(toupper))
+BDP_po_dejavnosti <- mutate_each(BDP_po_dejavnosti, funs(toupper))
+invest_regije <- mutate_each(invest_regije, funs(toupper))
+toplogredni_po_dejavnosti <- mutate_each(toplogredni_po_dejavnosti, funs(toupper))
