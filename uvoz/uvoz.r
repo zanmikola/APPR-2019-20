@@ -9,7 +9,7 @@ izpust_co2 <- izpust_skupaj %>% select(1,seq(2, 33, 4))
 izpust_co2[,-1] <- izpust_co2[,-1] * 1000
 izpust_co2 <- gather(izpust_co2, 'Leto', 'Izpust CO2 (Mg)', 2:9)
 izpust_co2$Leto <- gsub(' CO2 \\(Gg\\)', '',izpust_co2$Leto)
-izpust_co2$Leto <- as.numeric(izpust_co2$Leto)
+izpust_co2$Leto <- parse_integer(izpust_co2$Leto)
 
 
 izpust_n2o <- izpust_skupaj %>% select(1,seq(3, 33, 4))
@@ -46,6 +46,7 @@ okoljske_investicije[21,] <- c('U Dejavnost eksteritorialnih organizacij in tele
 okoljske_investicije <- gather(okoljske_investicije, 'Leto', 'Investicije mio €', 2:9)
 okoljske_investicije$Leto <- gsub(' Namen . SKUPAJ', '',okoljske_investicije$Leto)
 okoljske_investicije$Leto <- as.numeric(okoljske_investicije$Leto)
+okoljske_investicije$`Investicije mio €` <- as.numeric(okoljske_investicije$'Investicije mio €')
 okoljske_investicije <- okoljske_investicije %>% rename(`DEJAVNOST` = `SKD DEJAVNOST`)
 okoljske_investicije <- okoljske_investicije %>% mutate(DEJAVNOST=izpust_skupaj$DEJAVNOST)
 
@@ -58,21 +59,67 @@ okoljski_davki$Leto <- gsub(' NAMEN . SKUPAJ', '',okoljski_davki$Leto)
 okoljski_davki$Leto <- as.numeric(okoljski_davki$Leto)
 okoljski_davki <- okoljski_davki %>% mutate(DEJAVNOST=izpust_skupaj$DEJAVNOST)
 
-BDP <- read_csv('podatki/bdp.csv',locale=locale(encoding="Windows-1250"), na=c("z","-"))
-BDP[is.na(BDP)] <- 0
-BDP <- BDP %>% select(1,seq(2, 17, 2))
-BDP <- BDP %>% slice(grep("^[A-Z] ",  as.vector(BDP$`DEJAVNOSTI/TRANSAKCIJE`)))
-BDP$`DEJAVNOSTI/TRANSAKCIJE` <- gsub('\\([0-9].*[0-9]\\)', '', BDP$`DEJAVNOSTI/TRANSAKCIJE`)
-BDP <- gather(BDP, 'Leto', 'BDP mio €', 2:9)
-BDP$Leto <- gsub(' Tekoče cene \\(mio EUR\\) Proizvodnja', '',BDP$Leto)
-BDP$Leto <- as.numeric(BDP$Leto)
-BDP <- BDP %>% rename(`DEJAVNOST` = `DEJAVNOSTI/TRANSAKCIJE`)
-BDP <- BDP %>% mutate(DEJAVNOST=izpust_skupaj$DEJAVNOST)
+
+bdp <- read_csv('podatki/bdp_dodana_vrednost.csv',locale=locale(encoding="Windows-1250"), na=c("z","-"))
+bdp[is.na(bdp)] <- 0
+bdp <- bdp %>% slice(grep("^[A-Z]",  as.vector(bdp$`DEJAVNOSTI/TRANSAKCIJE`)))
+bdp$`DEJAVNOSTI/TRANSAKCIJE` <- gsub('\\([0-9].*[0-9]\\)', '', bdp$`DEJAVNOSTI/TRANSAKCIJE`)
+bdp <- gather(bdp, 'Leto', 'Proizvodnja mio €', 2:9)
+bdp$Leto <- gsub(' Tekoče cene \\(mio EUR\\) Dodana vrednost', '',bdp$Leto)
+bdp$Leto <- as.numeric(bdp$Leto)
+bdp <- bdp %>% rename(`DEJAVNOST` = `DEJAVNOSTI/TRANSAKCIJE`)
+
+bdp_skupni <- bdp %>% filter(DEJAVNOST %in% c('Skupaj dejavnosti', 'Neto davki na proizvode', 'Bruto domači proizvod'))
+bdp_skupni <- bdp_skupni %>% arrange(Leto)
+
+bdp <- bdp[-(grep("Skupaj dejavnosti|Neto davki na proizvode|Bruto domači proizvod", bdp$DEJAVNOST)),]
+bdp <- bdp %>% mutate(DEJAVNOST=izpust_skupaj$DEJAVNOST)
+
 
 zdruzena_tabela <- merge(izpust_skupaj, okoljske_investicije)
 zdruzena_tabela <- merge(zdruzena_tabela, okoljski_davki)
-zdruzena_tabela <- merge(zdruzena_tabela, BDP)
+zdruzena_tabela <- merge(zdruzena_tabela, bdp)
 zdruzena_tabela <- zdruzena_tabela[c(2,1,3,4,5,6,7,8,9)]
 zdruzena_tabela <- zdruzena_tabela %>% arrange(Leto)
 
-zdruzena_tabela$Izpusti <- rowSums(zdruzena_tabela[3:6])
+zdruzena_tabela$'Izpusti (Mg)' <- rowSums(zdruzena_tabela[3:6])
+
+
+
+
+regije <- read.csv2(file="podatki/2711801.csv", header=TRUE, fileEncoding="Windows-1250", skip=1, dec= '.')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
