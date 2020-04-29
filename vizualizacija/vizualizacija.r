@@ -54,11 +54,43 @@ graf2 <- ggplot(tabela1, aes(x=Leto)) +
 graf2
 
 
-tabela2 <- zdruzena_tabela  %>% filter(Leto == 2010)
+tabela2  <- zdruzena_tabela %>% group_by(DEJAVNOST) %>% summarise('Investicije mio €'=sum(`Investicije mio €`),
+                                                                      'Davki mio €' =sum(`Davki mio €`),
+                                                                      'Proizvodnja mio €' = sum(`Proizvodnja mio €`),
+                                                                      'Izpust (Mg)' = sum(`Izpusti (Mg)`))
 
+davek <- tabela2$`Davki mio €` / tabela2$`Izpust (Mg)`
+investicija <- tabela2$`Investicije mio €` / tabela2$`Izpust (Mg)`
+
+tabela2$'Davek (€) na enoto izpusta (Mg)' <- davek * 1000000
+tabela2$'Investicija (€) na enoto izpusta (Mg)' <- investicija * 1000000
+vek <- c(LETTERS[1:21])
+tabela2 <- tabela2 %>% mutate(DEJAVNOST = vek)
+tabela2[is.na(tabela2)] <- 0
+tabela2[21,6] <- 0
+#tabela2 <- tabela2[-(20:21),]
+tabela2 <- tabela2[-15,]
 graf3 <- ggplot(tabela2, aes(x=DEJAVNOST)) +
-        geom_point(aes(y=`Izpusti (Mg)`))
+        geom_point(aes(y=tabela2$`Davek (€) na enoto izpusta (Mg)`, colour='Davek'))+
+        geom_point(aes(y=tabela2$`Investicija (€) na enoto izpusta (Mg)`, colour='Investicije'))+
+        scale_colour_manual("", values = c("Investicije" = "blue", "Davek" = "red"))+
+        ylab('Indeski, referenčno leto 2010') +
+        ggtitle('Graf davkov in investicij')
+  
       
+
 graf3  
+
+tabela3 <- tabela2[,c(1,6,7)] 
+tabela3 <- tabela3 %>% rename('Investicija' = 'Investicija (€) na enoto izpusta (Mg)') %>% rename('Davek'= 'Davek (€) na enoto izpusta (Mg)')
+tabela3 <- gather(tabela3, 'Namen', 'eur_na_Mg', 2:3)
+tabela3 <- tabela3[c('Namen','DEJAVNOST','eur_na_Mg' )]
+test <- ggplot() +
+  geom_bar(stat="identity",data = tabela3 %>% mutate(subset = "all"),aes(x=DEJAVNOST, y=eur_na_Mg, fill=Namen),position=position_dodge())+
+  geom_bar(stat="identity",data = tabela3 %>% filter(eur_na_Mg < 300) %>% mutate(subset = "small"),aes(x=DEJAVNOST, y=eur_na_Mg, fill=Namen),position=position_dodge())+
+  facet_wrap(~ subset, scales = "free_y")
+
+ 
+test
 
 
