@@ -5,25 +5,25 @@ izpust_skupaj[is.na(izpust_skupaj)] <- 0
 izpust_skupaj <- izpust_skupaj %>% slice(grep("^[A-Z] ",  as.vector(izpust_skupaj$`DEJAVNOST`)))
 
 
-izpust_co2 <- izpust_skupaj %>% select(1,seq(2, 33, 4))
+izpust_co2 <- izpust_skupaj %>% dplyr::select(1,seq(2, 33, 4))
 izpust_co2[,-1] <- izpust_co2[,-1] * 1000
 izpust_co2 <- gather(izpust_co2, 'Leto', 'Izpust CO2 (Mg)', 2:9)
 izpust_co2$Leto <- gsub(' CO2 \\(Gg\\)', '',izpust_co2$Leto)
 izpust_co2$Leto <- parse_integer(izpust_co2$Leto)
 
 
-izpust_n2o <- izpust_skupaj %>% select(1,seq(3, 33, 4))
+izpust_n2o <- izpust_skupaj %>% dplyr::select(1,seq(3, 33, 4))
 izpust_n2o <- gather(izpust_n2o, 'Leto', 'Izpust N2O (Mg)', 2:9)
 izpust_n2o$Leto <- gsub(' N2O \\(Mg\\)', '',izpust_n2o$Leto)
 izpust_n2o$Leto <- as.numeric(izpust_n2o$Leto)
 
-izpust_ch4 <- izpust_skupaj %>% select(1,seq(4, 33, 4))
+izpust_ch4 <- izpust_skupaj %>% dplyr::select(1,seq(4, 33, 4))
 izpust_ch4 <- gather(izpust_ch4, 'Leto', 'Izpust CH4 (Mg)', 2:9)
 izpust_ch4$Leto <- gsub(' CH4 \\(Mg\\)', '',izpust_ch4$Leto)
 izpust_ch4$Leto <- as.numeric(izpust_ch4$Leto)
 
 
-izpust_sf6 <- izpust_skupaj %>% select(1,seq(5, 33, 4))
+izpust_sf6 <- izpust_skupaj %>% dplyr::select(1,seq(5, 33, 4))
 izpust_sf6 <- gather(izpust_sf6, 'Leto', 'Izpust SF6 (Mg)', 2:9)
 izpust_sf6$Leto <- gsub(' SF6 \\(Mg\\)', '',izpust_sf6$Leto)
 izpust_sf6$Leto <- as.numeric(izpust_sf6$Leto)
