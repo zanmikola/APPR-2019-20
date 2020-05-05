@@ -1,6 +1,6 @@
 ---
 title: "Poročilo pri predmetu Analiza podatkov s programom R"
-author: "Študent FMF"
+author: "Žan Mikola"
 output:
   html_document: default
   pdf_document:
@@ -26,9 +26,10 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 # Izbira teme
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
+V projektu bom analiziral izpust toplgrednih plinov v Sloveniji.
+Poizkusil bom poiskati povezavo med gospodarsko rastjo in izpustom BDP, oziroma ugotoviti ali gospodarska rast pripomore k investicijam in davkom na okolje.
+Na koncu projekta bom tudi predstavil, koliko se v posameznih regijah investira v zmanjšanje toplogrednih plinov.
 
-![](slike/grb.png)
 
 ***
 
@@ -38,70 +39,48 @@ Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+Podatke sem uvozil iz spletne strani Statističnega urada Republike Slovenija. Podatke imam v dveh razpredelnicah v obliki *tidy data*.
 
-1. `druzine` - podatki o družinah za vsako občino
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `velikost.druzine` - spremenljivka: število otrok v družini (število: 1, 2, 3 ali 4, kjer zadnja vrednost pomeni 4 ali več),
-  - `stevilo.druzin` - meritev: število družin z ustreznim številom otrok v ustrezni občini (število).
+1. `leto` - spremenljivka: leto meritve(2010-2017)
+  - `DEJAVNOST` - spremenljivka: gospodarske dejavnosti,
+  - `Investicije mio €` - meritev: investicije v varovanje okolja
+  - `Davki mio €` - meritev: okoljski davki 
+  - `Proizvodnja mio €` - meritev: BDP države
+  - `Izpusti (Mg)` - meritev: izpust plinov CH4, SF6, CO2, N20 v miligramih
+  - `Izpusti CH4 (Mg)` - meritev: izpust plinov CH4 v miligramih
+  - `Izpusti N20 (Mg)` - meritev: izpust plinov N20 v miligramih
+  - `Izpusti CO2 (Mg)` - meritev: izpust plinov CO2 v miligramih
+  - `Izpusti SF6 (Mg)` - meritev: izpust plinov SF6 v miligramih
 
-2. `obcine` - podatki o občinah
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `povrsina` - meritev: površina občine v km$^2$ (število),
-  - `prebivalci` - meritev: prebivalstvo občine (število),
-  - `gostota` - meritev: število prebivalcev na km$^2$ (število),
-  - `naselja` - meritev: število naselij v občini (število),
-  - `ustanovitev` - meritev: leto ustanovitve občine (število),
-  - `pokrajina` - meritev: pokrajina, ki ji občina pripada (neurejen faktor),
-  - `regija` - meritev: regija, ki ji občina pripada (neurejen faktor),
-  - `odcepitev` - meritev: podatki o občinah, od katerih se je občina odcepila (besedilo).
-
-**Opomba**: da bi razpredelnica `obcine` res bila v obliki *tidy data*, bi morali odstraniti stolpec `gostota` (saj je izpeljan iz stolpcev `povrsina` in `prebivalci`), podatke o pokrajinah pa bi morali premakniti v drugo razpredelnico, saj nekatere občine pripadajo dvema pokrajinama. Podobno bi morali narediti tudi s stolpcem `odcepitev`.
-
-Spodnji graf prikazuje porazdelitev števila naselij v občinah.
-
-```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
-ggplot(obcine, aes(x=naselja)) + geom_histogram() +
-  ggtitle("Pogostost števila naselij") + xlab("Število naselij") + ylab("Število občin")
-```
-
+2. `Leto` - podatki o občinah
+  - `STATISTIČNA.REGIJA` - spremenljivka: ime regije,
+  - `INVESTICIJE` - spremenljivka: namen za kaj se je investiralo,
+  - `Investicije.za.varstvo.okolja` - meritev: tisoč € investirano,
+  
 ***
 
 # Analiza in vizualizacija podatkov
 
+
 ```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+#uvoz grafov
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
 
-```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
-ggplot() + geom_polygon(data=left_join(zemljevid, povprecja, by=c("OB_UIME"="obcina")),
-                        aes(x=long, y=lat, group=group, fill=povprecje)) +
-  ggtitle("Povprečno število otrok v družini") + xlab("") + ylab("") +
-  guides(fill=guide_colorbar(title="Povprečje"))
+
+Spodnji grafi prikazujejo analizo različnih kategorij.
+
+```{r zemljevid1, echo=FALSE, fig.align='center', fig.cap='Zemljevid 1'}
+plot(zemljevid.investicije)
 ```
 
 ***
 
 # Napredna analiza podatkov
 
-```{r analiza, echo=FALSE, message=FALSE}
-source("analiza/analiza.r", encoding="UTF-8")
-```
 
-Spodnji graf prikazuje povezavo med številom naselij in površino občine.
 
-```{r graf, echo=FALSE, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
-ggplot(inner_join(obcine, data.frame(obcina=names(skupine),
-                                     skupina=factor(skupine)), by="obcina")
-, aes(x=povrsina, y=naselja, color=skupina, size=prebivalci/1000)) + geom_point() +
-  ggtitle("Število naselij glede na površino občine") +
-  xlab(expression("Površina (km"^2 * ")")) + ylab("Št. naselij") +
-  guides(color=guide_legend(title="Skupina"),
-         size=guide_legend(title="Prebivalci (* 1000)"))
-```
 
 ***
 
