@@ -28,7 +28,7 @@ graf_regresija1
 graf2
 
 tabela_analiza <- tabela1 %>% dplyr::select(1,4)
-tabela_analiza <- tabela_analiza %>% rename('bdp'='BDP mio €')
+tabela_analiza <- tabela_analiza %>% rename('bdp'='BDP')
 tabela_analiza
 tabela_analiza$'izpusti' <- izpust$izpusti
 tabela_analiza

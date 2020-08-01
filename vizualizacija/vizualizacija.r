@@ -54,12 +54,12 @@ graf2 <- ggplot(tabela1, aes(x=Leto)) +
 graf2
 
 
-tabela1 <- tabela1 %>% rename('BPD' = 'BDP') %>% rename('Davek'= 'Davki')
-tabela1 <- tabela1[,-2]
-tabela1 <- gather(tabela1, 'Namen', 'indeks', 2:3)
-tabela1 <- tabela1[c('Namen','Leto','indeks')]
+tabela2 <- tabela1 %>% rename('BPD' = 'BDP') %>% rename('Davek'= 'Davki')
+tabela2 <- tabela2[,-2]
+tabela2 <- gather(tabela2, 'Namen', 'indeks', 2:3)
+tabela2 <- tabela2[c('Namen','Leto','indeks')]
 
-graf3 <- ggplot(tabela1, aes(x=Leto, y=indeks, fill=Namen)) +
+graf3 <- ggplot(tabela2, aes(x=Leto, y=indeks, fill=Namen)) +
   geom_bar(stat="identity", position=position_dodge())+
   ylab('Indeksi, referenčno leto 2010')+
   theme_minimal()
@@ -67,30 +67,29 @@ graf3 <- ggplot(tabela1, aes(x=Leto, y=indeks, fill=Namen)) +
 graf3
 #-------------------------------------------------------#
 
-tabela2  <- zdruzena_tabela %>% group_by(DEJAVNOST) %>% summarise('Investicije'=sum(`Investicije`),
+tabela3  <- zdruzena_tabela %>% group_by(DEJAVNOST) %>% summarise('Investicije'=sum(`Investicije`),
                                                                       'Davki' =sum(`Davki`),
                                                                       'Proizvodnja' = sum(`Proizvodnja`),
                                                                       'Izpust' = sum(`Izpusti_mg`))
 
-davek <- tabela2$`Davki` / tabela2$`Izpust`
-investicija <- tabela2$`Investicije` / tabela2$`Izpust`
+davek <- tabela3$`Davki` / tabela3$`Izpust`
+investicija <- tabela3$`Investicije` / tabela3$`Izpust`
 
-tabela2$'Davek_na_mg' <- davek * 1000000
-tabela2$'Investicija_na_mg' <- investicija * 1000000
+tabela3$'Davek_na_mg' <- davek * 1000000
+tabela3$'Investicija_na_mg' <- investicija * 1000000
 vek <- c(LETTERS[1:21])
-tabela2 <- tabela2 %>% mutate(DEJAVNOST = vek)
-tabela2[is.na(tabela2)] <- 0
-tabela2[21,6] <- 0
-tabela2 <- tabela2[-(20:21),]
-tabela2 <- tabela2[-15,]
-#graf4 <- ggplot(tabela2, aes(x=DEJAVNOST)) +
-#        geom_point(aes(y=tabela2$`Davek (€) na enoto izpusta (Mg)`, colour='Davek'))+
-#        geom_point(aes(y=tabela2$`Investicija (€) na enoto izpusta (Mg)`, colour='Investicije'))+
+tabela3 <- tabela3 %>% mutate(DEJAVNOST = vek)
+tabela3[is.na(tabela3)] <- 0
+tabela3[21,6] <- 0
+tabela3 <- tabela3[-(20:21),]
+tabela3 <- tabela3[-15,]
+#graf4 <- ggplot(tabela3, aes(x=DEJAVNOST)) +
+##        geom_point(aes(y=tabela3$`Davek_na_mg`, colour='Davek'))+
+#        geom_point(aes(y=tabela3$`Investicija_na_mg`, colour='Investicije'))+
 #        scale_colour_manual("", values = c("Investicije" = "blue", "Davek" = "red"))+
 #        ylab('Indeski, referenčno leto 2010') +
 #        ggtitle('Graf davkov in investicij') 
   
-      
 
 #graf4
 
@@ -98,17 +97,17 @@ tabela2 <- tabela2[-15,]
 
 
 
-tabela3 <- tabela2[,c(1,6,7)] 
-tabela3 <- tabela3 %>% rename('Investicija' = 'Investicija_na_mg') %>% rename('Davek'= 'Davek_na_mg')
-tabela3 <- gather(tabela3, 'Namen', 'eur_na_Mg', 2:3)
-tabela3 <- tabela3[c('Namen','DEJAVNOST','eur_na_Mg' )]
+tabela4 <- tabela3[,c(1,6,7)] 
+tabela4 <- tabela4 %>% rename('Investicija' = 'Investicija_na_mg') %>% rename('Davek'= 'Davek_na_mg')
+tabela4 <- gather(tabela4, 'Namen', 'eur_na_Mg', 2:3)
+tabela4 <- tabela4[c('Namen','DEJAVNOST','eur_na_Mg' )]
 graf5.1 <- ggplot() +
-  geom_bar(stat="identity",data = tabela3,aes(x=DEJAVNOST, y=eur_na_Mg, fill=Namen),position=position_dodge())+theme_bw() +
+  geom_bar(stat="identity",data = tabela4,aes(x=DEJAVNOST, y=eur_na_Mg, fill=Namen),position=position_dodge())+theme_bw() +
   theme(legend.position = c(0.7, 0.5))+
   ylab('Investirani € glede na enoto izpusta v Mg')+ggtitle('Investicije v zmanjšanje izpust toplogrednih plinov')
-
+graf5.1
 graf5.2 <- ggplot()+
-  geom_bar(stat="identity",data = tabela3 %>% filter(eur_na_Mg < 300),aes(x=DEJAVNOST, y=eur_na_Mg, fill=Namen),position=position_dodge())+ theme_bw() +
+  geom_bar(stat="identity",data = tabela4 %>% filter(eur_na_Mg < 300),aes(x=DEJAVNOST, y=eur_na_Mg, fill=Namen),position=position_dodge())+ theme_bw() +
   theme(legend.position = c(0.7, 0.5))+
   ylab('Investirani € glede na enoto izpusta v Mg')+ggtitle('Investicije v zmanjšanje izpust toplogrednih plinov')
 graf5.2
@@ -137,32 +136,35 @@ invest <- gather(invest, 'Namen', 'indeks', 2:3)
 
 graf6 <- ggplot() +
   geom_bar(stat="identity",data = invest, aes(x=Leto, y=indeks, fill=Namen), position=position_dodge())+
-  geom_line(data=izpust, aes(x=Leto,y=izpusti))
+  geom_line(data=izpust, aes(x=Leto,y=izpusti))+
+  ylab('Investirani € glede na namen')+
+  ggtitle('Investicije v zmanjšanje izpust toplogrednih plinov')
+  
 
 
 graf6
 ####
 
-
-#izpust_skupaj
-#vek <- c(LETTERS[1:21])
-##vec <- c()
-#for (v  in c(1:8) )
-#  vec <- c(vec,vek)
-
-#izpust_skupaj <- izpust_skupaj %>% mutate(DEJAVNOST =vec)
-#izpust_skupaj$'Izpust (Mg)' <- rowSums(izpust_skupaj[3:6])
-
-
-#graf7 <- ggplot(izpust_skupaj, aes(x=DEJAVNOST))+
-#  geom_boxplot(aes(y=izpust_skupaj$`Izpust (Mg)`))
-#graf7
+tabela5  <- zdruzena_tabela %>% group_by(Leto) %>% summarise('CH4'=sum(`Izpust_CH4`),
+                                                                  'CO2' =sum(`Izpust_CO2`),
+                                                                  'N2O' = sum(`Izpust_N2O`))
+vrednost <- tabela5$`CH4`[1] 
+tabela5$`CH4` <- tabela5$`CH4` / vrednost * 100
+vrednost <- tabela5$`CO2`[1] 
+tabela5$`CO2` <- tabela5$`CO2` / vrednost * 100
+vrednost <- tabela5$`N2O`[1] 
+tabela5$`N2O` <- tabela5$`N2O` / vrednost * 100
+tabela5 <- tabela5[-1,]
 
 
+tabela5 <- gather(tabela5, 'Plin', 'Mg', 2:4)
 
 
-
-
+graf7 <- ggplot() +
+  geom_bar(stat="identity",data = tabela5, aes(x=Leto, y=Mg, fill=Plin),position=position_dodge())+theme_bw() +
+  theme(legend.position = c(0.8, 0.5))+
+  ylab('Indeksi')+ggtitle('Izpust toplogrednih plinov glede na referenčno leto 2010')
+graf7
 
 
 

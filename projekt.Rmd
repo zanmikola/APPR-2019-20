@@ -68,6 +68,15 @@ source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
 
+```{r grafi_osnovni, echo=FALSE, fig.align='center', warning=FALSE}
+print(graf1)
+print(graf2)
+print(graf5.1)
+print(graf5.2)
+print(graf6)
+print(graf7)
+```
+
 
 Spodnji grafi prikazujejo analizo različnih kategorij.
 
@@ -75,9 +84,23 @@ Spodnji grafi prikazujejo analizo različnih kategorij.
 plot(zemljevid.investicije)
 ```
 
+```{r zemljevid2, echo=FALSE, fig.align='center', fig.cap='Zemljevid 2'}
+plot(zemljevid.zrak)
+```
 ***
 
-# Napredna analiza podatkov
+ Napredna analiza podatkov
+
+```{r analiza, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+#uvoz grafov
+source("analiza/analiza.r", encoding="UTF-8")
+```
+
+```{r grafi_napredni, echo=FALSE, fig.align='center', warning=FALSE}
+print(graf_regresija1)
+print(graf_regresija2)
+
+```
 
 
 
