@@ -91,8 +91,12 @@ regije <- read.csv2(file="podatki/2711801.csv", header=TRUE, fileEncoding="Windo
 regije <- regije %>% rename('regija' = 'STATISTIČNA.REGIJA')
 
 
-
-
+evropa <- izpust_skupaj <- read_csv("podatki/1.csv",locale=locale(encoding="Windows-1250"), na = c("...","-"))
+evropa <- evropa %>% rename('Tisocton' = 'Value')
+evropa <- evropa[,-3]
+evropa <- evropa[,-3]
+evropa <- evropa[,-3]
+evropa <- evropa[,-4]
 
 
 

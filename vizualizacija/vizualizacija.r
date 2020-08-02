@@ -167,11 +167,18 @@ graf7 <- ggplot() +
 graf7
 
 
+#################
 
+#evropa <- evropa %>%  group_by(GEO) %>% summarise('Tisocton'=sum(`Tisocton`))
+evropa$TIME <- as.factor(evropa$TIME)
+evropa$GEO <- gsub('Germany \\(until 1990 former territory of the FRG\\)', 'Germany',evropa$GEO)
+evropa
+graf8 <- ggplot(evropa, aes(x=TIME, y=Tisocton)) +
+  geom_boxplot()+
+  geom_jitter()+
+  scale_y_log10()
 
-
-
-
+graf8 
 
 
 
@@ -245,3 +252,29 @@ zemljevid.zrak <- ggplot() +
 
 zemljevid.zrak 
 
+##############
+
+
+map <- map_data("world")
+eu <- c("Austria","Belgium","Bulgaria","Croatia","Cyprus",
+                   "Czechia.","Denmark","Estonia","Finland","France",
+                   "Germany","Greece","Hungary","Ireland","Italy","Latvia",
+                   "Lithuania","Luxembourg","Malta","Netherlands","Poland",
+                   "Portugal","Romania","Slovakia","Slovenia","Spain",
+                   "Sweden","United Kingdom")
+
+eu <- map_data("world", region = eu)
+eu <- fortify(eu)
+evropa <- evropa %>%  group_by(GEO) %>% summarise('Tisocton'=sum(`Tisocton`))
+evropa <- evropa %>% rename('region' = 'GEO')
+evropa
+eumap <- right_join(evropa,eu, by = c('region'))
+
+eumap1 <- ggplot()+
+  geom_polygon(data = eumap, aes(x = long, y = lat, group = group, fill =Tisocton))+
+  geom_path(data = eu, aes(x = long,y = lat, group = group),color = "white", size = 0.1) +
+  xlab("") + ylab("") + ggtitle('Izpusti toplogrednih plinov') + 
+  theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank())+
+  scale_fill_viridis(option = "plasma", direction = -1)+
+  coord_fixed()
+eumap1
