@@ -24,6 +24,7 @@ library(leaflet)
 library(raster)
 library(viridis)
 library(cowplot)
+library("stringr")
 # Uvozimo funkcije za pobiranje in uvoz zemljevida.
 source("lib/uvozi.zemljevid.r", encoding="UTF-8")
 

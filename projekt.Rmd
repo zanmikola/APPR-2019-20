@@ -39,11 +39,11 @@ Na koncu projekta bom tudi predstavil, koliko se v posameznih regijah investira 
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Podatke sem uvozil iz spletne strani Statističnega urada Republike Slovenija. Podatke imam v dveh razpredelnicah v obliki *tidy data*.
+Podatke sem uvozil iz spletne strani Statističnega urada Republike Slovenija. Podatke imam v treh razpredelnicah v obliki *tidy data*.
 
 1. 'zdruzena_tabela' - podatki o izpusti toplogrednih plinov, davkih, investicijah in BDP-ju v Sloveniji
-- `Leto` - spremenljivka: leto meritve(2010-2017)
-  - `Dejavnost` - spremenljivka: gospodarske dejavnosti,
+- `Leto` - spremenljivka: leto meritve (2010-2017)
+  - `Dejavnost` - spremenljivka: gospodarske dejavnosti
   - `Investicije` - meritev: investicije v varovanje okolja
   - `Davki` - meritev: okoljski davki 
   - `Proizvodnja` - meritev: BDP države
@@ -53,16 +53,16 @@ Podatke sem uvozil iz spletne strani Statističnega urada Republike Slovenija. P
   - `Izpusti_CO2` - meritev: izpust plinov CO2 v miligramih
   - `Izpusti_SF6` - meritev: izpust plinov SF6 v miligramih
 
-2. 'regije' - podatki o investicijah za varovanje okolja, glede na namen
--`Leto` - spremenljivka: leto meritve(2010-2017)
-  - `regije` - spremenljivka: ime regije,
-  - `Namen` - spremenljivka: namen za kaj se je investiralo
-  - `Investicije` - meritev: tisoč € investirano
+2. 'regije' - podatki o investicijah za varovanje okolja glede na namen
+-`Leto` - spremenljivka: leto meritve (2010-2017)
+  - `regije` - spremenljivka: ime regije
+  - `Namen` - spremenljivka: namen čemu se je investiralo
+  - `Investicije` - meritev: investicije v tisoč €
 
 3. 'evropa' - podatki o izpustih toplogrednih plinov v Evropi
--`Leto` - spremenljivka: leto meritve(2010-2017)
+-`Leto` - spremenljivka: leto meritve (2010-2017)
   - `Drzava` - spremenljivka: ime evropske države
-  - `Tisoc_ton` - meritev: količina (v tisoš tonah) izpuščenih toplogrednih plinov
+  - `Tisoc_ton` - meritev: količina (tisoč ton) izpuščenih toplogrednih plinov
   
   
   
@@ -81,40 +81,57 @@ Spodnji graf prikazuje trend naraščanja oziroma padanja investicij in davkov, 
 ```{r grafi_osnovni, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf2)
 ```
+Opazimo, da so z naraščanjem BDP-ja naraščali tudi davki, investicije so pa naraščale oziroma padale neodvisno od BDP-ja.
 
 
-Spodnji grafi prikazujejo izpuste toplogrednih plinov, glede na gospodarske panoge. 
+Spodnji graf prikazuje koliko so bile posamezne gospodarske dejavnosti obdavčene oziroma koliko se je investiralo v njih, glede na izpuste toplogrednih plinov. 
 ```{r grafi_osnovni2, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf5.1)
 ```
+Opazimo lahko, da so panoge, ki ne veljajo za okolju nevarne prejele veliko investicij glede na enoto izpusta, ki so ga proizvedle. Dejavnosti, ki pa veljajo za okolju manj prijazne, so plačale precej več davka glede na enoto izpusta.
 
-Spodnji graf prikazuje indekse naraščanja investiranega denarja za varovanje okolja na splošno in za ohranjanje čistega zraka.Črna črta prikazuje trend rasti BDP-ja. 
+
+Spodnji graf prikazuje indekse naraščanja investiranega denarja za varovanje okolja na splošno in za ohranjanje čistega zraka. Črna črta prikazuje trend rasti BDP-ja. 
 ```{r grafi_inevsticije, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf6)
 ```
-Spodnji graf prikazuje indeks naraščanja oziroma zmanjševanja izpustov posameznega toplogrednega plina, glede na referenčno leto 2010
+Opazimo lahko, da je trend spreminjanja investicij v čistejši zrak precej bolj dinamičen, kot pa trend investiranja v varovanje okolja nasplošno.
+
+
+Spodnji graf prikazuje indeks naraščanja oziroma zmanjševanja izpustov posameznega toplogrednega plina glede na referenčno leto 2010
 ```{r grafi_plini, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf7)
 ```
+Opazimo lahko, da je Slovenija najbolj znižala izpust CO2, medtem ko je izpust NO2 celo narastel.
 
-Spodnji graf prikazuje izpuste toplogrednih plinov v Evropi za posamezna leta. Točke prikazujejo izpuste posaemznih držav.
+Spodnji graf prikazuje izpuste toplogrednih plinov v Evropi za posamezna leta. Točke prikazujejo izpuste posameznih držav.
 ```{r grafi_evropa, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf8)
 ```
+Med posameznimi leti nemoremo opaziti večjih razlik o izpustih tolpogrednih plinov.
 
-Spodnji zemljevid prikazuje, koliko okoljskih investicij je bilo namenjenih v posamezni regiji v Sloveniji
+Spodnji zemljevid prikazuje koliko okoljskih investicij je bilo namenjenih v posamezni regiji v Sloveniji.
 ```{r zemljevid1, echo=FALSE, fig.align='center', fig.cap='Zemljevid okoljskih investicij'}
 plot(zemljevid.investicije)
 
 ```
-Spodnji zemljevid prikazuje, koliko  investicij za zmanjševanje onesaževanja zraka je bilo namenjenih v posamezni regiji v Sloveniji
+Največ investicij za varovanje okolje je bilo namenjeih v Osrednjeslovenski in Savinjski regiji. Presenetljivo malo investicij je bilo namenjenih v Zasavski regiji.
+
+
+
+Spodnji zemljevid prikazuje koliko  investicij za zmanjševanje onesaževanja zraka je bilo namenjenih v posamezni regiji v Sloveniji
 ```{r zemljevid2, echo=FALSE, fig.align='center', fig.cap='Zemljevid investicij za zmanjševanje onesaževanja zraka'}
 plot(zemljevid.zrak)
 ```
-Spodnji zemljevid prikazuje, koliko toplogrednih plinov so posamezne članice EU izpustile med leti 2010 - 2017
+Daleč največ investicij za zmanjševanje je možno opaziti v Savinjski regiji, najverjetneje zaradi večjih tovarn, ki se trudji zmanjšati onesnaževanje.
+
+
+
+Spodnji zemljevid prikazuje koliko toplogrednih plinov so posamezne članice EU izpustile med leti 2010 - 2017
 ```{r zemljevid3, echo=FALSE, fig.align='center', fig.cap='Zemljevid izpustov toplogrednih plinov v Evropi'}
 plot(eumap1)
 ```
+Daleč največ toplogrednih plinov je povzročila Nemčija, kar ni presenetljivo, glede na njeno v vlogo v svetnovni industriji.
 ***
 
  Napredna analiza podatkov
@@ -124,13 +141,12 @@ plot(eumap1)
 source("analiza/analiza.r", encoding="UTF-8")
 ```
 
-Spodnja grafa prikazujeta, kako bi naj rastel BDP in izpusti v prihodnjih letih, glede na trende iz preteklosti.
+Spodnja grafa prikazujeta, kako bi naj rastla BDP in izpusti v prihodnjih letih, glede na trende iz preteklosti.
 ```{r grafi_napredni, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf_regresija1)
 print(graf_regresija2)
-
 ```
-
+Opazimo lahko, da naj bi trend rasti izpustov sovpadal s trednom rast BDP-ja.
 
 
 

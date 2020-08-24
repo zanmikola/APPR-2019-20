@@ -77,8 +77,8 @@ investicija <- tabela3$`Investicije` / tabela3$`Izpust`
 
 tabela3$'Davek_na_mg' <- davek * 1000000
 tabela3$'Investicija_na_mg' <- investicija * 1000000
-vek <- c(LETTERS[1:21])
-tabela3 <- tabela3 %>% mutate(Dejavnost = vek)
+#vek <- c(LETTERS[1:21])
+#tabela3 <- tabela3 %>% mutate(Dejavnost = vek)
 tabela3[is.na(tabela3)] <- 0
 tabela3[21,6] <- 0
 tabela3 <- tabela3[-(20:21),]
@@ -101,10 +101,12 @@ tabela4 <- tabela3[,c(1,6,7)]
 tabela4 <- tabela4 %>% rename('Investicija' = 'Investicija_na_mg') %>% rename('Davek'= 'Davek_na_mg')
 tabela4 <- gather(tabela4, 'Namen', 'eur_na_Mg', 2:3)
 tabela4 <- tabela4[c('Namen','Dejavnost','eur_na_Mg' )]
+
 graf5.1 <- ggplot() +
-  geom_bar(stat="identity",data = tabela4,aes(x=Dejavnost, y=eur_na_Mg, fill=Namen),position=position_dodge())+theme_bw() +
-  theme(legend.position = c(0.7, 0.5))+
-  ylab('Investirani € glede na enoto izpusta v Mg')+ggtitle('Investicije v zmanjšanje izpust toplogrednih plinov')
+  geom_bar(stat="identity",data = tabela4,aes(x=Dejavnost, y=eur_na_Mg, fill=Namen),position=position_dodge())+theme_bw()+
+  ggtitle('Investicije v zmanjšanje izpust toplogrednih plinov') + scale_x_discrete(labels = function(x) str_wrap(x, width = 35))+
+  ylab('Investirani € glede na enoto izpusta v Mg') + xlab("Dejavnost") + coord_flip()
+
 graf5.1
 #graf5.2 <- ggplot()+
 #  geom_bar(stat="identity",data = tabela4 %>% filter(eur_na_Mg < 300),aes(x=Dejavnost, y=eur_na_Mg, fill=Namen),position=position_dodge())+ theme_bw() +
