@@ -1,17 +1,34 @@
 library(shiny)
 
-shinyUI(fluidPage(
+#shinyUI(fluidPage(
+#  
+#  titlePanel("Slovenske občine"),
+#  
+#  tabsetPanel(
+#      tabPanel("Velikost družine",
+#               DT::dataTableOutput("druzine")),
+#      
+#      tabPanel("Število naselij",
+#               sidebarPanel(
+#                  uiOutput("pokrajine")
+#                ),
+#               mainPanel(plotOutput("naselja")))
+#    )
+#))
+
+#shinyUI(fluidPage(
+#  titlePanel("Izpusti"), 
+#  DT::dataTableOutput("regije")))
+ 
+fluidPage(
+  titlePanel('Izpusti'),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput('izbrana', 'Izberi regijo', choices = regije$regija)
+  ),
   
-  titlePanel("Slovenske občine"),
-  
-  tabsetPanel(
-      tabPanel("Velikost družine",
-               DT::dataTableOutput("druzine")),
-      
-      tabPanel("Število naselij",
-               sidebarPanel(
-                  uiOutput("pokrajine")
-                ),
-               mainPanel(plotOutput("naselja")))
+  mainPanel(
+    DT::dataTableOutput('regijedata')
     )
-))
+  )
+)

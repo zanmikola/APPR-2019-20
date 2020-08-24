@@ -41,7 +41,8 @@ source("uvoz/uvoz.r", encoding="UTF-8")
 
 Podatke sem uvozil iz spletne strani Statističnega urada Republike Slovenija. Podatke imam v dveh razpredelnicah v obliki *tidy data*.
 
-1. `leto` - spremenljivka: leto meritve(2010-2017)
+1. 'zdruzena_tabla' - podatki o izpusti toplogrednih plinov, davkih, investicijah in BDP-ju v Sloveniji
+-`leto` - spremenljivka: leto meritve(2010-2017)
   - `DEJAVNOST` - spremenljivka: gospodarske dejavnosti,
   - `Investicije mio €` - meritev: investicije v varovanje okolja
   - `Davki mio €` - meritev: okoljski davki 
@@ -52,10 +53,18 @@ Podatke sem uvozil iz spletne strani Statističnega urada Republike Slovenija. P
   - `Izpusti CO2 (Mg)` - meritev: izpust plinov CO2 v miligramih
   - `Izpusti SF6 (Mg)` - meritev: izpust plinov SF6 v miligramih
 
-2. `Leto` - podatki o občinah
+2. 'regije' - podatki o investicijah za varovanje okolja, glede na namen
+-`leto` - spremenljivka: leto meritve(2010-2017)
   - `STATISTIČNA.REGIJA` - spremenljivka: ime regije,
-  - `INVESTICIJE` - spremenljivka: namen za kaj se je investiralo,
-  - `Investicije.za.varstvo.okolja` - meritev: tisoč € investirano,
+  - `INVESTICIJE` - spremenljivka: namen za kaj se je investiralo
+  - `Investicije.za.varstvo.okolja` - meritev: tisoč € investirano
+
+3. 'evropa' - podatki o izpustih toplogrednih plinov v Evropi
+-`TIME` - spremenljivka: leto meritve(2010-2017)
+  - `GEO` - spremenljivka: ime evropske države
+  - `tisocton` - meritev: količina (v tisoš tonah) izpuščenih toplogrednih plinov
+  
+  
   
 ***
 
@@ -68,25 +77,43 @@ source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
 
+Spodnji graf prikazuje trend naraščanja oziroma padanja investicij in davkov, glede na trend naraščanja BDP-ja.
 ```{r grafi_osnovni, echo=FALSE, fig.align='center', warning=FALSE}
-print(graf1)
 print(graf2)
+```
+
+
+Spodnji grafi prikazujejo izpuste toplogrednih plinov, glede na gospodarske panoge. 
+```{r grafi_osnovni2, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf5.1)
-print(graf5.2)
+print(graf5)
+```
+
+Spodnji graf prikazuje indekse naraščanja investiranega denarja za varovanje okolja na splošno in za ohranjanje čistega zraka.Črna črta prikazuje trend rasti BDP-ja. 
+```{r grafi_inevsticije, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf6)
+```
+Spodnji graf prikazuje indeks naraščanja oziroma zmanjševanja izpustov posameznega toplogrednega plina, glede na referenčno leto 2010
+```{r grafi_plini, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf7)
+```
+
+Spodnji graf prikazuje izpuste toplogrednih plinov v Evropi za posamezna leta. Točke prikazujejo izpuste posaemznih držav.
+```{r grafi_evropa, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf8)
 ```
 
-
-Spodnji grafi prikazujejo analizo različnih kategorij.
-
-```{r zemljevid1, echo=FALSE, fig.align='center', fig.cap='Zemljevid 1'}
+Spodnji zemljevid prikazuje, koliko okoljskih investicij je bilo namenjenih v posamezni regiji v Sloveniji
+```{r zemljevid1, echo=FALSE, fig.align='center', fig.cap='Zemljevid okoljskih investicij'}
 plot(zemljevid.investicije)
-```
 
-```{r zemljevid2, echo=FALSE, fig.align='center', fig.cap='Zemljevid 2'}
+```
+Spodnji zemljevid prikazuje, koliko  investicij za zmanjševanje onesaževanja zraka je bilo namenjenih v posamezni regiji v Sloveniji
+```{r zemljevid2, echo=FALSE, fig.align='center', fig.cap='Zemljevid investicij za zmanjševanje onesaževanja zraka'}
 plot(zemljevid.zrak)
+```
+Spodnji zemljevid prikazuje, koliko toplogrednih plinov so posamezne članice EU izpustile med leti 2010 - 2017
+```{r zemljevid3, echo=FALSE, fig.align='center', fig.cap='Zemljevid izpustov toplogrednih plinov v Evropi'}
 plot(eumap1)
 ```
 ***
@@ -98,6 +125,7 @@ plot(eumap1)
 source("analiza/analiza.r", encoding="UTF-8")
 ```
 
+Spodnja grafa prikazujeta, kako bi naj rastel BDP in izpusti v prihodnjih letih, glede na trende iz preteklosti.
 ```{r grafi_napredni, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf_regresija1)
 print(graf_regresija2)

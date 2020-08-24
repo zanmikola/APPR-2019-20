@@ -137,7 +137,7 @@ invest <- gather(invest, 'Namen', 'indeks', 2:3)
 graf6 <- ggplot() +
   geom_bar(stat="identity",data = invest, aes(x=Leto, y=indeks, fill=Namen), position=position_dodge())+
   geom_line(data=izpust, aes(x=Leto,y=izpusti))+
-  ylab('Investirani € glede na namen')+
+  ylab('Indeksi invetiranja (referenčno leto 2010) glede na namen')+
   ggtitle('Investicije v zmanjšanje izpust toplogrednih plinov')
   
 
@@ -176,7 +176,8 @@ evropa
 graf8 <- ggplot(evropa, aes(x=TIME, y=Tisocton)) +
   geom_boxplot()+
   geom_jitter()+
-  scale_y_log10()
+  scale_y_log10()+
+  ylab('Izpusti v tisoč tonah')+ggtitle('Izpust toplogrednih plinov v Evropi')
 
 graf8 
 
@@ -245,7 +246,7 @@ zem <- right_join(regije3,slo, by = c('regija'))
 zemljevid.zrak <- ggplot() +
   geom_polygon(data = zem, aes(x = long, y = lat, group = group, fill =Investicije))+
   geom_path(data = zem, aes(x = long,y = lat, group = group),color = "white", size = 0.1) +
-  xlab("") + ylab("") + ggtitle('Investicije') + 
+  xlab("") + ylab("") + ggtitle('Investicija za zmanjševanje onesaneževanja zraka') + 
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank())+
   scale_fill_viridis(option = "viridis", direction = -1)+
   coord_fixed()
