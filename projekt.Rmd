@@ -41,28 +41,28 @@ source("uvoz/uvoz.r", encoding="UTF-8")
 
 Podatke sem uvozil iz spletne strani Statističnega urada Republike Slovenija. Podatke imam v dveh razpredelnicah v obliki *tidy data*.
 
-1. 'zdruzena_tabla' - podatki o izpusti toplogrednih plinov, davkih, investicijah in BDP-ju v Sloveniji
--`leto` - spremenljivka: leto meritve(2010-2017)
-  - `DEJAVNOST` - spremenljivka: gospodarske dejavnosti,
-  - `Investicije mio €` - meritev: investicije v varovanje okolja
-  - `Davki mio €` - meritev: okoljski davki 
-  - `Proizvodnja mio €` - meritev: BDP države
-  - `Izpusti (Mg)` - meritev: izpust plinov CH4, SF6, CO2, N20 v miligramih
-  - `Izpusti CH4 (Mg)` - meritev: izpust plinov CH4 v miligramih
-  - `Izpusti N20 (Mg)` - meritev: izpust plinov N20 v miligramih
-  - `Izpusti CO2 (Mg)` - meritev: izpust plinov CO2 v miligramih
-  - `Izpusti SF6 (Mg)` - meritev: izpust plinov SF6 v miligramih
+1. 'zdruzena_tabela' - podatki o izpusti toplogrednih plinov, davkih, investicijah in BDP-ju v Sloveniji
+- `Leto` - spremenljivka: leto meritve(2010-2017)
+  - `Dejavnost` - spremenljivka: gospodarske dejavnosti,
+  - `Investicije` - meritev: investicije v varovanje okolja
+  - `Davki` - meritev: okoljski davki 
+  - `Proizvodnja` - meritev: BDP države
+  - `Izpusti_mg` - meritev: izpust plinov CH4, SF6, CO2, N20 v miligramih
+  - `Izpusti_CH` - meritev: izpust plinov CH4 v miligramih
+  - `Izpusti_N20` - meritev: izpust plinov N20 v miligramih
+  - `Izpusti_CO2` - meritev: izpust plinov CO2 v miligramih
+  - `Izpusti_SF6` - meritev: izpust plinov SF6 v miligramih
 
 2. 'regije' - podatki o investicijah za varovanje okolja, glede na namen
--`leto` - spremenljivka: leto meritve(2010-2017)
-  - `STATISTIČNA.REGIJA` - spremenljivka: ime regije,
-  - `INVESTICIJE` - spremenljivka: namen za kaj se je investiralo
-  - `Investicije.za.varstvo.okolja` - meritev: tisoč € investirano
+-`Leto` - spremenljivka: leto meritve(2010-2017)
+  - `regije` - spremenljivka: ime regije,
+  - `Namen` - spremenljivka: namen za kaj se je investiralo
+  - `Investicije` - meritev: tisoč € investirano
 
 3. 'evropa' - podatki o izpustih toplogrednih plinov v Evropi
--`TIME` - spremenljivka: leto meritve(2010-2017)
-  - `GEO` - spremenljivka: ime evropske države
-  - `tisocton` - meritev: količina (v tisoš tonah) izpuščenih toplogrednih plinov
+-`Leto` - spremenljivka: leto meritve(2010-2017)
+  - `Drzava` - spremenljivka: ime evropske države
+  - `Tisoc_ton` - meritev: količina (v tisoš tonah) izpuščenih toplogrednih plinov
   
   
   
@@ -86,7 +86,6 @@ print(graf2)
 Spodnji grafi prikazujejo izpuste toplogrednih plinov, glede na gospodarske panoge. 
 ```{r grafi_osnovni2, echo=FALSE, fig.align='center', warning=FALSE}
 print(graf5.1)
-print(graf5)
 ```
 
 Spodnji graf prikazuje indekse naraščanja investiranega denarja za varovanje okolja na splošno in za ohranjanje čistega zraka.Črna črta prikazuje trend rasti BDP-ja. 

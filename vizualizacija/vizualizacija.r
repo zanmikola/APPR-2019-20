@@ -17,7 +17,7 @@ tabela1 <- zdruzena_tabela %>% group_by(Leto) %>% summarise('Investicije'=sum(`I
                                                          'Davki' =sum(`Davki`),
                                                          'Proizvodnja' = sum(`Proizvodnja`))
 
-davki_na_proizvodnjo <- bdp_skupni %>% filter(DEJAVNOST == 'Neto davki na proizvode')
+davki_na_proizvodnjo <- bdp_skupni %>% filter(Dejavnost == 'Neto davki na proizvode')
 davki_na_proizvodnjo <- davki_na_proizvodnjo[-1]
 davki_na_proizvodnjo <- davki_na_proizvodnjo %>% rename('Neto_davki_na_proizvode' = `Proizvodnja`)
 
@@ -67,7 +67,7 @@ graf3 <- ggplot(tabela2, aes(x=Leto, y=indeks, fill=Namen)) +
 graf3
 #-------------------------------------------------------#
 
-tabela3  <- zdruzena_tabela %>% group_by(DEJAVNOST) %>% summarise('Investicije'=sum(`Investicije`),
+tabela3  <- zdruzena_tabela %>% group_by(Dejavnost) %>% summarise('Investicije'=sum(`Investicije`),
                                                                       'Davki' =sum(`Davki`),
                                                                       'Proizvodnja' = sum(`Proizvodnja`),
                                                                       'Izpust' = sum(`Izpusti_mg`))
@@ -78,7 +78,7 @@ investicija <- tabela3$`Investicije` / tabela3$`Izpust`
 tabela3$'Davek_na_mg' <- davek * 1000000
 tabela3$'Investicija_na_mg' <- investicija * 1000000
 vek <- c(LETTERS[1:21])
-tabela3 <- tabela3 %>% mutate(DEJAVNOST = vek)
+tabela3 <- tabela3 %>% mutate(Dejavnost = vek)
 tabela3[is.na(tabela3)] <- 0
 tabela3[21,6] <- 0
 tabela3 <- tabela3[-(20:21),]
@@ -100,24 +100,23 @@ tabela3 <- tabela3[-15,]
 tabela4 <- tabela3[,c(1,6,7)] 
 tabela4 <- tabela4 %>% rename('Investicija' = 'Investicija_na_mg') %>% rename('Davek'= 'Davek_na_mg')
 tabela4 <- gather(tabela4, 'Namen', 'eur_na_Mg', 2:3)
-tabela4 <- tabela4[c('Namen','DEJAVNOST','eur_na_Mg' )]
+tabela4 <- tabela4[c('Namen','Dejavnost','eur_na_Mg' )]
 graf5.1 <- ggplot() +
-  geom_bar(stat="identity",data = tabela4,aes(x=DEJAVNOST, y=eur_na_Mg, fill=Namen),position=position_dodge())+theme_bw() +
+  geom_bar(stat="identity",data = tabela4,aes(x=Dejavnost, y=eur_na_Mg, fill=Namen),position=position_dodge())+theme_bw() +
   theme(legend.position = c(0.7, 0.5))+
   ylab('Investirani € glede na enoto izpusta v Mg')+ggtitle('Investicije v zmanjšanje izpust toplogrednih plinov')
 graf5.1
-graf5.2 <- ggplot()+
-  geom_bar(stat="identity",data = tabela4 %>% filter(eur_na_Mg < 300),aes(x=DEJAVNOST, y=eur_na_Mg, fill=Namen),position=position_dodge())+ theme_bw() +
-  theme(legend.position = c(0.7, 0.5))+
-  ylab('Investirani € glede na enoto izpusta v Mg')+ggtitle('Investicije v zmanjšanje izpust toplogrednih plinov')
-graf5.2
-graf5 <- plot_grid(graf5.1, graf5.2, labels = "AUTO")
-graf5 
+#graf5.2 <- ggplot()+
+#  geom_bar(stat="identity",data = tabela4 %>% filter(eur_na_Mg < 300),aes(x=Dejavnost, y=eur_na_Mg, fill=Namen),position=position_dodge())+ theme_bw() +
+#  theme(legend.position = c(0.7, 0.5))+
+#  ylab('Investirani € glede na enoto izpusta v Mg')+ggtitle('Investicije v zmanjšanje izpust toplogrednih plinov')
+#graf5.2
+#graf5 <- plot_grid(graf5.1, graf5.2, labels = "AUTO")
+#graf5 
 
-regije2 <- regije %>% filter(INVESTICIJE == 'Varstvo zraka in klime')
-regije2 <- regije2 %>% group_by(LETO) %>% summarise('Investicije'=sum(`Investicije.za.varstvo.okolja`))
+regije2 <- regije %>% filter(Namen == 'Varstvo zraka in klime')
+regije2 <- regije2 %>% group_by(Leto) %>% summarise('Investicije'=sum(`Investicije`))
 regije2 <- regije2 %>% rename('INV' = 'Investicije')
-regije2 <- regije2 %>% rename('Leto' = 'LETO')
 tabela4 <- zdruzena_tabela %>% group_by(Leto) %>% summarise('Investicije'=sum(`Investicije`))
 tabela4[,2] <- tabela4[,2] * 1000
 
@@ -162,7 +161,6 @@ tabela5 <- gather(tabela5, 'Plin', 'Mg', 2:4)
 
 graf7 <- ggplot() +
   geom_bar(stat="identity",data = tabela5, aes(x=Leto, y=Mg, fill=Plin),position=position_dodge())+theme_bw() +
-  theme(legend.position = c(0.8, 0.5))+
   ylab('Indeksi')+ggtitle('Izpust toplogrednih plinov glede na referenčno leto 2010')
 graf7
 
@@ -170,10 +168,10 @@ graf7
 #################
 
 #evropa <- evropa %>%  group_by(GEO) %>% summarise('Tisocton'=sum(`Tisocton`))
-evropa$TIME <- as.factor(evropa$TIME)
-evropa$GEO <- gsub('Germany \\(until 1990 former territory of the FRG\\)', 'Germany',evropa$GEO)
+evropa$Leto <- as.factor(evropa$Leto)
+evropa$Drzava <- gsub('Germany \\(until 1990 former territory of the FRG\\)', 'Germany',evropa$Drzava)
 evropa
-graf8 <- ggplot(evropa, aes(x=TIME, y=Tisocton)) +
+graf8 <- ggplot(evropa, aes(x=Leto, y=Tisoc_ton)) +
   geom_boxplot()+
   geom_jitter()+
   scale_y_log10()+
@@ -186,7 +184,7 @@ graf8
  ###############
  
 
-regije1 <- regije %>% group_by(regija) %>% summarise('Investicije'=sum(`Investicije.za.varstvo.okolja`))
+regije1 <- regije %>% group_by(regija) %>% summarise('Investicije'=sum(`Investicije`))
 regije1[,1] <-as.character(regije1$regija)
 
 slo <- readRDS("podatki/gadm36_SVN_1_sp.rds") %>% fortify()
@@ -198,10 +196,11 @@ zem <- right_join(regije1,slo, by = c('regija'))
 zemljevid.investicije <- ggplot() +
   geom_polygon(data = zem, aes(x = long, y = lat, group = group, fill =Investicije))+
   geom_path(data = zem, aes(x = long,y = lat, group = group),color = "white", size = 0.1) +
-  xlab("") + ylab("") + ggtitle('Investicije') + 
+  xlab("") + ylab("") + ggtitle('Investicije za varstvo okolja') + 
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank())+
   scale_fill_viridis(option = "viridis", direction = -1)+
-  coord_fixed()
+  coord_fixed()+
+  labs(fill = 'Investicije v tisoč €')
  
 zemljevid.investicije 
 
@@ -233,8 +232,8 @@ zemljevid.investicije
 
 
 
-regije3 <- regije %>% filter(INVESTICIJE == 'Varstvo zraka in klime')
-regije3 <- regije3 %>% group_by(regija) %>% summarise('Investicije'=sum(`Investicije.za.varstvo.okolja`))
+regije3 <- regije %>% filter(Namen == 'Varstvo zraka in klime')
+regije3 <- regije3 %>% group_by(regija) %>% summarise('Investicije'=sum(`Investicije`))
 regije3[,1] <-as.character(regije3$regija)
 
 slo <- readRDS("podatki/gadm36_SVN_1_sp.rds") %>% fortify()
@@ -246,10 +245,11 @@ zem <- right_join(regije3,slo, by = c('regija'))
 zemljevid.zrak <- ggplot() +
   geom_polygon(data = zem, aes(x = long, y = lat, group = group, fill =Investicije))+
   geom_path(data = zem, aes(x = long,y = lat, group = group),color = "white", size = 0.1) +
-  xlab("") + ylab("") + ggtitle('Investicija za zmanjševanje onesaneževanja zraka') + 
+  xlab("") + ylab("") + ggtitle('Investicija za zmanjševanje onesneževanja zraka') + 
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank())+
   scale_fill_viridis(option = "viridis", direction = -1)+
-  coord_fixed()
+  coord_fixed()+
+  labs(fill = 'Investicije v tisoč €')
 
 zemljevid.zrak 
 
@@ -266,16 +266,18 @@ eu <- c("Austria","Belgium","Bulgaria","Croatia","Cyprus",
 
 eu <- map_data("world", region = eu)
 eu <- fortify(eu)
-evropa <- evropa %>%  group_by(GEO) %>% summarise('Tisocton'=sum(`Tisocton`))
-evropa <- evropa %>% rename('region' = 'GEO')
+evropa <- evropa %>%  group_by(Drzava) %>% summarise('Tisoc_ton'=sum(`Tisoc_ton`))
+evropa <- evropa %>% rename('region' = 'Drzava')
 evropa
 eumap <- right_join(evropa,eu, by = c('region'))
 
 eumap1 <- ggplot()+
-  geom_polygon(data = eumap, aes(x = long, y = lat, group = group, fill =Tisocton))+
+  geom_polygon(data = eumap, aes(x = long, y = lat, group = group, fill =Tisoc_ton))+
   geom_path(data = eu, aes(x = long,y = lat, group = group),color = "white", size = 0.1) +
-  xlab("") + ylab("") + ggtitle('Izpusti toplogrednih plinov') + 
+  xlab("") + ylab("") + ggtitle('Izpusti toplogrednih plinov v državah evropske unije') + 
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank())+
   scale_fill_viridis(option = "plasma", direction = -1)+
-  coord_fixed()
+  coord_fixed() +
+  labs(fill = "Tisoč ton izpusta")
 eumap1
+

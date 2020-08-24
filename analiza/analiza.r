@@ -22,7 +22,9 @@ napoved
 
 graf_regresija1 <- ggplot(izpust, aes(x=Leto, y=izpusti)) + geom_line() + 
   geom_smooth(method='lm', formula=y ~ poly(x,2,raw=TRUE), fullrange=TRUE, color='green') +
-  scale_x_continuous('Leto', limits = c(2008,2023))
+  scale_x_continuous('Leto', limits = c(2008,2023))+
+  ylab('Indeksi izpusta toplogrednih plinov (referenčno leto 2010)')+
+  ggtitle('Napoved izpusta toplogrednih plinov v Mg do leta 2013')
 graf_regresija1
 
 graf2
@@ -35,5 +37,8 @@ tabela_analiza
 
 graf_regresija2 <- ggplot(tabela_analiza, aes(x=Leto, y=bdp)) + geom_point() + 
   geom_smooth(method='lm', formula=y ~ poly(x,2,raw=TRUE), fullrange=TRUE, color='blue') +
-  scale_x_continuous('Leto', limits = c(2010,2023))
+  scale_x_continuous('Leto', limits = c(2010,2023))+
+  ylab('Indeksi rasti BDP-ja (referenčno leto 2010)')+
+  ggtitle('Napoved rasti BDP-ja do leta 2013')
+
 graf_regresija2
