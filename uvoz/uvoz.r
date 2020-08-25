@@ -102,7 +102,8 @@ evropa <- evropa[,-3]
 evropa <- evropa[,-4]
 evropa <- evropa %>% rename('Drzava' = 'GEO')
 evropa <- evropa %>% rename('Leto' = 'TIME')
-
+evropa$Drzava <- gsub('Germany \\(until 1990 former territory of the FRG\\)', 'Germany',evropa$Drzava)
+evropa$Drzava <- gsub('Czechia', 'Czech Republic',evropa$Drzava)
 
 
 

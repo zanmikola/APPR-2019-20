@@ -171,7 +171,6 @@ graf7
 
 #evropa <- evropa %>%  group_by(GEO) %>% summarise('Tisocton'=sum(`Tisocton`))
 evropa$Leto <- as.factor(evropa$Leto)
-evropa$Drzava <- gsub('Germany \\(until 1990 former territory of the FRG\\)', 'Germany',evropa$Drzava)
 evropa
 graf8 <- ggplot(evropa, aes(x=Leto, y=Tisoc_ton)) +
   geom_boxplot()+
@@ -188,6 +187,7 @@ graf8
 
 regije1 <- regije %>% group_by(regija) %>% summarise('Investicije'=sum(`Investicije`))
 regije1[,1] <-as.character(regije1$regija)
+regije1[,-1] <- regije1[,-1] / 1000
 
 slo <- readRDS("podatki/gadm36_SVN_1_sp.rds") %>% fortify()
 colnames(slo)[11] <- 'regija'
@@ -202,7 +202,7 @@ zemljevid.investicije <- ggplot() +
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank())+
   scale_fill_viridis(option = "viridis", direction = -1)+
   coord_fixed()+
-  labs(fill = 'Investicije v tisoč €')
+  labs(fill = 'Investicije v milijon €')
  
 zemljevid.investicije 
 
@@ -237,6 +237,7 @@ zemljevid.investicije
 regije3 <- regije %>% filter(Namen == 'Varstvo zraka in klime')
 regije3 <- regije3 %>% group_by(regija) %>% summarise('Investicije'=sum(`Investicije`))
 regije3[,1] <-as.character(regije3$regija)
+regije3[,-1] <- regije3[,-1] / 1000
 
 slo <- readRDS("podatki/gadm36_SVN_1_sp.rds") %>% fortify()
 colnames(slo)[11] <- 'regija'
@@ -251,7 +252,7 @@ zemljevid.zrak <- ggplot() +
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank())+
   scale_fill_viridis(option = "viridis", direction = -1)+
   coord_fixed()+
-  labs(fill = 'Investicije v tisoč €')
+  labs(fill = 'Investicije v milijon €')
 
 zemljevid.zrak 
 
@@ -260,26 +261,27 @@ zemljevid.zrak
 
 map <- map_data("world")
 eu <- c("Austria","Belgium","Bulgaria","Croatia","Cyprus",
-                   "Czechia.","Denmark","Estonia","Finland","France",
-                   "Germany","Greece","Hungary","Ireland","Italy","Latvia",
+                   "Czech Republic","Denmark","Estonia","Finland","France",
+                   "Germany","Greece","Hungary","Iceland","Ireland","Italy","Latvia",
                    "Lithuania","Luxembourg","Malta","Netherlands","Poland",
                    "Portugal","Romania","Slovakia","Slovenia","Spain",
-                   "Sweden","United Kingdom")
+                   "Sweden","Switzerland","Turkey","United Kingdom")
 
 eu <- map_data("world", region = eu)
 eu <- fortify(eu)
 evropa <- evropa %>%  group_by(Drzava) %>% summarise('Tisoc_ton'=sum(`Tisoc_ton`))
 evropa <- evropa %>% rename('region' = 'Drzava')
-evropa
+evropa[,-1] <- evropa[,-1] / 1000
+evropa <- evropa %>% rename('Milijon_ton' = 'Tisoc_ton')
 eumap <- right_join(evropa,eu, by = c('region'))
 
 eumap1 <- ggplot()+
-  geom_polygon(data = eumap, aes(x = long, y = lat, group = group, fill =Tisoc_ton))+
+  geom_polygon(data = eumap, aes(x = long, y = lat, group = group, fill =Milijon_ton))+
   geom_path(data = eu, aes(x = long,y = lat, group = group),color = "white", size = 0.1) +
   xlab("") + ylab("") + ggtitle('Izpusti toplogrednih plinov v državah evropske unije') + 
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank())+
   scale_fill_viridis(option = "plasma", direction = -1)+
   coord_fixed() +
-  labs(fill = "Tisoč ton izpusta")
+  labs(fill = "Milijon ton izpusta")
 eumap1
 
